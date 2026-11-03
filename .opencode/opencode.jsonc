@@ -72,11 +72,11 @@
       "models": {
         "deepseek-v4.1-flash": {
           // Exact ID from the HF router catalog; routes to a live provider.
-          "modelID": "deepseek-ai/DeepSeek-V4.1-Flash",
+          "modelID": "deepseek-ai/DeepSeek-V4.1-Flash:deepinfra",
           "name": "DeepSeek V4.1 Flash (HF)",
           "limit": {
-            "context": 200000,
-            "output": 200000
+            "context": 400000,
+            "output": 32000
           }
         }
       }

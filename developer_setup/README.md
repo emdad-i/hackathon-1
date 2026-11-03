@@ -17,7 +17,7 @@ Our standard setup is **VS Code + GitHub + Discord + OpenCode**. If you already 
 
 - **GitHub** (`hackathon-1` repo) — all code, commits, CI, and project tickets.
 - **Discord** — all communication, quick calls, and team coordination.
-- **OpenCode** — AI pair programmer, running **DeepSeek V4.1 Flash (free)**. No account or key is needed; the repo's `opencode.jsonc` is already configured. See [opencode.md](opencode.md). Backup credits for the same model are on Hugging Face.
+- **OpenCode** — AI pair programmer, running **DeepSeek V4.1 Flash (free)**. No account or key is needed; the repo's `.opencode/opencode.jsonc` is already configured. See [opencode.md](opencode.md). Backup credits for the same model are on Hugging Face.
 
 ## First-day checklist
 

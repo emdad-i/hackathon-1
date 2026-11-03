@@ -4,6 +4,21 @@
   // Default to the free model for all hackathon work.
   "model": "opencode/deepseek-v4.1-flash-free",
 
+  // Shared guardrails. Shell asks by default; routine reads are pre-approved.
+  // The last matching rule wins, so the denies go last.
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "git log *", "effect": "allow" },
+    { "action": "shell", "resource": "git show *", "effect": "allow" },
+    { "action": "shell", "resource": "ls *", "effect": "allow" },
+    { "action": "shell", "resource": "pwd", "effect": "allow" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "shell", "resource": "git reset --hard *", "effect": "deny" },
+    { "action": "shell", "resource": "rm -rf *", "effect": "deny" }
+  ],
+
   // Backup provider. Only used if the free model is rate-limited.
   // The organisers provide HF_TOKEN; never commit it.
   "providers": {

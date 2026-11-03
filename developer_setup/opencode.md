@@ -45,7 +45,7 @@ opencode --version
 
 ## Use the free DeepSeek model
 
-The repo ships [`opencode.jsonc`](../opencode.jsonc), which sets `model` to `opencode/deepseek-v4.1-flash-free`. OpenCode selects the free model automatically when it starts.
+The repo ships [`opencode.jsonc`](../.opencode/opencode.jsonc), which sets `model` to `opencode/deepseek-v4.1-flash-free`. OpenCode selects the free model automatically when it starts.
 
 **No OpenCode account or API key is needed for the free model.** You do not need to run `/connect` or `/models`.
 
@@ -68,7 +68,7 @@ The free model is the default, so leave it selected for normal work. It is a lim
 
 If the free model is unavailable or you hit a rate limit, switch to the same model through Hugging Face. **You do not need to create a Hugging Face account** — organisers will provide the token if it is needed. Ask in the Discord `#help` channel.
 
-The Hugging Face provider is already defined in [`opencode.jsonc`](../opencode.jsonc), so there is no file to edit.
+The Hugging Face provider is already defined in [`opencode.jsonc`](../.opencode/opencode.jsonc), so there is no file to edit.
 
 1. Export the token in your shell (do not commit it):
 
@@ -87,7 +87,7 @@ The Hugging Face provider is already defined in [`opencode.jsonc`](../opencode.j
 
 ## Context and compaction
 
-Both the free model and the Hugging Face backup are configured with a **200k context window** and a **200k output cap** in [`opencode.jsonc`](../opencode.jsonc).
+Both the free model and the Hugging Face backup are configured with a **200k context window** and a **200k output cap** in [`opencode.jsonc`](../.opencode/opencode.jsonc).
 
 OpenCode compacts automatically when a session gets close to the limit:
 
@@ -100,7 +100,7 @@ OpenCode compacts automatically when a session gets close to the limit:
 
 So compaction triggers at **200k − 15% ≈ 170k tokens**, not at 200k. The 15k `keep.tokens` value is separate: it controls how much recent detail survives the summary.
 
-If you need more recent detail preserved, change `compaction.keep.tokens` in `opencode.jsonc`:
+If you need more recent detail preserved, change `compaction.keep.tokens` in `.opencode/opencode.jsonc`:
 
 ```jsonc
 "compaction": {
@@ -137,4 +137,4 @@ A larger `keep.tokens` leaves less room for new work, so it may cause more frequ
 | Free model unavailable | Wait a minute, or switch to the Hugging Face backup |
 | `401` from Hugging Face | Token is wrong, expired, or not exported in this shell |
 | Windows blocks the download | Right-click the zip → **Properties** → **Unblock**, then extract again |
-| Config not applied | Confirm `opencode.jsonc` is in the repo root and is valid JSON |
+| Config not applied | Confirm `.opencode/opencode.jsonc` exists and is valid JSON |

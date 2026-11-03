@@ -5,15 +5,37 @@
   "model": "opencode/deepseek-v4.1-flash-free",
 
   // Shared guardrails. Shell asks by default; routine reads are pre-approved.
-  // The last matching rule wins, so the denies go last.
+  // The last matching rule wins, so specific allow/ask/deny rules go last.
   "permissions": [
     { "action": "shell", "resource": "*", "effect": "ask" },
+
+    // Read-only inspection: no prompt.
     { "action": "shell", "resource": "git status *", "effect": "allow" },
     { "action": "shell", "resource": "git diff *", "effect": "allow" },
     { "action": "shell", "resource": "git log *", "effect": "allow" },
     { "action": "shell", "resource": "git show *", "effect": "allow" },
     { "action": "shell", "resource": "ls *", "effect": "allow" },
     { "action": "shell", "resource": "pwd", "effect": "allow" },
+
+    // Staging is allowed: the agent prepares the commit for the developer to review.
+    { "action": "shell", "resource": "git add *", "effect": "allow" },
+
+    // Anything that can overwrite or delete must always ask.
+    { "action": "shell", "resource": "rm *", "effect": "ask" },
+    { "action": "shell", "resource": "mv *", "effect": "ask" },
+    { "action": "shell", "resource": "cp *", "effect": "ask" },
+    { "action": "shell", "resource": "sed -i *", "effect": "ask" },
+    { "action": "shell", "resource": "truncate *", "effect": "ask" },
+    { "action": "shell", "resource": "dd *", "effect": "ask" },
+    { "action": "shell", "resource": "git checkout *", "effect": "ask" },
+    { "action": "shell", "resource": "git restore *", "effect": "ask" },
+    { "action": "shell", "resource": "git clean *", "effect": "ask" },
+    { "action": "shell", "resource": "git reset *", "effect": "ask" },
+    { "action": "shell", "resource": "*>*", "effect": "ask" },
+
+    // Hard blocks: the developer commits and pushes, not the agent.
+    { "action": "shell", "resource": "git add *.env*", "effect": "deny" },
+    { "action": "shell", "resource": "git commit *", "effect": "deny" },
     { "action": "shell", "resource": "git push *", "effect": "deny" },
     { "action": "shell", "resource": "git reset --hard *", "effect": "deny" },
     { "action": "shell", "resource": "rm -rf *", "effect": "deny" }

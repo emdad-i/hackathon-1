@@ -1,7 +1,8 @@
 ---
-description: Stage the current changes and write a concise commit
+description: Stage the current changes and propose a commit message
+agent: plan
 ---
 
-Review `git status` and `git diff`. Group the changes into one small, coherent commit.
+Review `git status` and `git diff`. Stage only the files related to this change.
 
-Stages only files related to this change, then commit with an imperative one-line message (for example `add free model config`). Show the `git status` result before staging if anything looks unrelated. Do not push.
+Then show `git status` and `git diff --cached`, propose a one-line imperative commit message, and stop. Do not commit or push: the developer reviews the staged diff and commits it themselves.

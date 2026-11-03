@@ -25,11 +25,18 @@ These rules apply to everyone working in this repository.
 ## Secrets and safety
 
 - Never read, print, or commit `.env` files, tokens, or API keys. `HF_TOKEN` comes from the environment.
-- Never run `git push`, `git reset --hard`, or `rm -rf` without explicit approval.
+- Never run `git commit`, `git push`, `git reset --hard`, or `rm -rf`. Those are blocked by config.
+- Commands that overwrite or delete files always need approval. Show the exact command and what it affects, then wait.
 - Don't install packages or add dependencies unless asked. Check that a package name is real first.
+
+## Checkpoints
+
+- After a multi-step change, or before anything destructive, stop and ask: "Is this okay?" Show what changed and what happens next.
+- Don't chain destructive steps. One approval, one step.
 
 ## Git
 
-- Small commits with imperative messages, e.g. `add free model config` or `fix setup link`.
-- Commit only files related to the task.
-- Leave pushing to the human unless they ask.
+- Never commit and never push. Staging is the end of your job.
+- Stage only files related to the task, then show `git status` and `git diff --cached`.
+- Propose a one-line, imperative commit message and stop so the developer can review and commit.
+- Small messages, e.g. `add free model config` or `fix setup link`.

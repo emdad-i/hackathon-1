@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Default to the free model for all hackathon work.
+  "model": "opencode/deepseek-v4.1-flash-free",
+
+  // Backup provider. Only used if the free model is rate-limited.
+  // The organisers provide HF_TOKEN; never commit it.
+  "providers": {
+    // Run the free model with the full 200k context and 200k output budget.
+    "opencode": {
+      "models": {
+        "deepseek-v4.1-flash-free": {
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          }
+        }
+      }
+    },
+
+    "huggingface": {
+      "name": "Hugging Face (backup)",
+      "env": ["HF_TOKEN"],
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "https://router.huggingface.co/v1"
+      },
+      "models": {
+        "deepseek-v4.1-flash": {
+          // Match this to the exact model ID on its Hugging Face page.
+          "modelID": "deepseek-ai/DeepSeek-V4.1-Flash",
+          "name": "DeepSeek V4.1 Flash (HF)",
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          }
+        }
+      }
+    }
+  }
+}

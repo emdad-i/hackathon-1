@@ -38,7 +38,13 @@
     { "action": "shell", "resource": "git commit *", "effect": "deny" },
     { "action": "shell", "resource": "git push *", "effect": "deny" },
     { "action": "shell", "resource": "git reset --hard *", "effect": "deny" },
-    { "action": "shell", "resource": "rm -rf *", "effect": "deny" }
+    { "action": "shell", "resource": "rm -rf *", "effect": "deny" },
+
+    // Don't let the agent rewrite its own guardrails or secret files unattended.
+    { "action": "edit", "resource": ".opencode/*", "effect": "ask" },
+    { "action": "edit", "resource": ".git/*", "effect": "ask" },
+    { "action": "edit", "resource": "AGENTS.md", "effect": "ask" },
+    { "action": "edit", "resource": "*.env*", "effect": "ask" }
   ],
 
   // Backup provider. Only used if the free model is rate-limited.
@@ -65,7 +71,7 @@
       },
       "models": {
         "deepseek-v4.1-flash": {
-          // Match this to the exact model ID on its Hugging Face page.
+          // Exact ID from the HF router catalog; routes to a live provider.
           "modelID": "deepseek-ai/DeepSeek-V4.1-Flash",
           "name": "DeepSeek V4.1 Flash (HF)",
           "limit": {

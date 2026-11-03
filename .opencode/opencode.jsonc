@@ -44,13 +44,13 @@
   // Backup provider. Only used if the free model is rate-limited.
   // The organisers provide HF_TOKEN; never commit it.
   "providers": {
-    // Run the free model with the full 200k context and 200k output budget.
+    // Run the free model at its catalog limits: 200k context, 32k output.
     "opencode": {
       "models": {
         "deepseek-v4.1-flash-free": {
           "limit": {
             "context": 200000,
-            "output": 200000
+            "output": 32000
           }
         }
       }

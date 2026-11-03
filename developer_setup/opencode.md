@@ -87,7 +87,7 @@ The Hugging Face provider is already defined in [`opencode.jsonc`](../.opencode/
 
 ## Context and compaction
 
-Both the free model and the Hugging Face backup are configured with a **200k context window** and a **200k output cap** in [`opencode.jsonc`](../.opencode/opencode.jsonc).
+The free model is configured with a **200k context window** and its **32k max output** in [`opencode.jsonc`](../.opencode/opencode.jsonc). The Hugging Face backup has its own limits, set on its model entry in the same file.
 
 OpenCode compacts automatically when a session gets close to the limit:
 
